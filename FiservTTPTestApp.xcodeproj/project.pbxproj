@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D45C7A0029C0CA0B004E40E6 /* FiservTTPTestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C79FF29C0CA0B004E40E6 /* FiservTTPTestAppApp.swift */; };
+		D45C7A0029C0CA0B004E40E6 /* FiservTTPTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */; };
 		D45C7A0229C0CA0B004E40E6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C7A0129C0CA0B004E40E6 /* ContentView.swift */; };
 		D45C7A0429C0CA0C004E40E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45C7A0329C0CA0C004E40E6 /* Assets.xcassets */; };
-		D45C7A0829C0CA0C004E40E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45C7A0729C0CA0C004E40E6 /* Preview Assets.xcassets */; };
+		D45C7A1229C0CB0B004E40E6 /* FiservTTP in Frameworks */ = {isa = PBXBuildFile; productRef = D45C7A1129C0CB0B004E40E6 /* FiservTTP */; };
+		D45C7A1429C0CC3B004E40E6 /* FiservTTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */; };
+		D45C7A1929C0D236004E40E6 /* ProximityReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45C7A1829C0D236004E40E6 /* ProximityReader.framework */; platformFilter = ios; };
+		D45C7A1B29C0DDBB004E40E6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D45C7A1A29C0DDBB004E40E6 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D45C79FC29C0CA0B004E40E6 /* FiservTTPTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiservTTPTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D45C79FF29C0CA0B004E40E6 /* FiservTTPTestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiservTTPTestAppApp.swift; sourceTree = "<group>"; };
+		D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiservTTPTestApp.swift; sourceTree = "<group>"; };
 		D45C7A0129C0CA0B004E40E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D45C7A0329C0CA0C004E40E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D45C7A0529C0CA0C004E40E6 /* FiservTTPTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiservTTPTestApp.entitlements; sourceTree = "<group>"; };
-		D45C7A0729C0CA0C004E40E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D45C7A0E29C0CAAC004E40E6 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservTTPViewModel.swift; sourceTree = "<group>"; };
+		D45C7A1829C0D236004E40E6 /* ProximityReader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProximityReader.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/ProximityReader.framework; sourceTree = DEVELOPER_DIR; };
+		D45C7A1A29C0DDBB004E40E6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45C7A1229C0CB0B004E40E6 /* FiservTTP in Frameworks */,
+				D45C7A1929C0D236004E40E6 /* ProximityReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,8 +44,11 @@
 		D45C79F329C0CA0B004E40E6 = {
 			isa = PBXGroup;
 			children = (
+				D45C7A0E29C0CAAC004E40E6 /* Entitlements.plist */,
+				D45C7A1A29C0DDBB004E40E6 /* .gitignore */,
 				D45C79FE29C0CA0B004E40E6 /* FiservTTPTestApp */,
 				D45C79FD29C0CA0B004E40E6 /* Products */,
+				D45C7A1729C0D236004E40E6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,21 +63,21 @@
 		D45C79FE29C0CA0B004E40E6 /* FiservTTPTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				D45C79FF29C0CA0B004E40E6 /* FiservTTPTestAppApp.swift */,
+				D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */,
 				D45C7A0129C0CA0B004E40E6 /* ContentView.swift */,
-				D45C7A0329C0CA0C004E40E6 /* Assets.xcassets */,
+				D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */,
 				D45C7A0529C0CA0C004E40E6 /* FiservTTPTestApp.entitlements */,
-				D45C7A0629C0CA0C004E40E6 /* Preview Content */,
+				D45C7A0329C0CA0C004E40E6 /* Assets.xcassets */,
 			);
 			path = FiservTTPTestApp;
 			sourceTree = "<group>";
 		};
-		D45C7A0629C0CA0C004E40E6 /* Preview Content */ = {
+		D45C7A1729C0D236004E40E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D45C7A0729C0CA0C004E40E6 /* Preview Assets.xcassets */,
+				D45C7A1829C0D236004E40E6 /* ProximityReader.framework */,
 			);
-			path = "Preview Content";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +96,9 @@
 			dependencies = (
 			);
 			name = FiservTTPTestApp;
+			packageProductDependencies = (
+				D45C7A1129C0CB0B004E40E6 /* FiservTTP */,
+			);
 			productName = FiservTTPTestApp;
 			productReference = D45C79FC29C0CA0B004E40E6 /* FiservTTPTestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +127,9 @@
 				Base,
 			);
 			mainGroup = D45C79F329C0CA0B004E40E6;
+			packageReferences = (
+				D45C7A1029C0CB0B004E40E6 /* XCRemoteSwiftPackageReference "FiservTTP" */,
+			);
 			productRefGroup = D45C79FD29C0CA0B004E40E6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45C7A0829C0CA0C004E40E6 /* Preview Assets.xcassets in Resources */,
+				D45C7A1B29C0DDBB004E40E6 /* .gitignore in Resources */,
 				D45C7A0429C0CA0C004E40E6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,8 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45C7A1429C0CC3B004E40E6 /* FiservTTPViewModel.swift in Sources */,
 				D45C7A0229C0CA0B004E40E6 /* ContentView.swift in Sources */,
-				D45C7A0029C0CA0B004E40E6 /* FiservTTPTestAppApp.swift in Sources */,
+				D45C7A0029C0CA0B004E40E6 /* FiservTTPTestApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,36 +279,41 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FiservTTPTestApp/FiservTTPTestApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FiservTTPTestApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q993233M8T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fiserv TapToPay Test App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fiserv.FiservTTPTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -299,36 +322,41 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FiservTTPTestApp/FiservTTPTestApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FiservTTPTestApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q993233M8T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fiserv TapToPay Test App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fiserv.FiservTTPTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -354,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D45C7A1029C0CB0B004E40E6 /* XCRemoteSwiftPackageReference "FiservTTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fs-rich-tilt/FiservTTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D45C7A1129C0CB0B004E40E6 /* FiservTTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45C7A1029C0CB0B004E40E6 /* XCRemoteSwiftPackageReference "FiservTTP" */;
+			productName = FiservTTP;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D45C79F429C0CA0B004E40E6 /* Project object */;
 }

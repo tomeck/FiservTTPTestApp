@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct FiservTTPTestAppApp: App {
+struct FiservTTPTestApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
