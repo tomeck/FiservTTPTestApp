@@ -14,6 +14,7 @@
 		D45C7A1429C0CC3B004E40E6 /* FiservTTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */; };
 		D45C7A1929C0D236004E40E6 /* ProximityReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45C7A1829C0D236004E40E6 /* ProximityReader.framework */; platformFilter = ios; };
 		D45C7A1B29C0DDBB004E40E6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D45C7A1A29C0DDBB004E40E6 /* .gitignore */; };
+		D4CF639729C0F3490017DFF3 /* TTPProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF639629C0F3490017DFF3 /* TTPProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservTTPViewModel.swift; sourceTree = "<group>"; };
 		D45C7A1829C0D236004E40E6 /* ProximityReader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProximityReader.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/ProximityReader.framework; sourceTree = DEVELOPER_DIR; };
 		D45C7A1A29C0DDBB004E40E6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D4CF639629C0F3490017DFF3 /* TTPProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTPProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +65,9 @@
 		D45C79FE29C0CA0B004E40E6 /* FiservTTPTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				D4CF639929C0F3C70017DFF3 /* View Models */,
+				D4CF639829C0F3A80017DFF3 /* Views */,
 				D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */,
-				D45C7A0129C0CA0B004E40E6 /* ContentView.swift */,
-				D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */,
 				D45C7A0529C0CA0C004E40E6 /* FiservTTPTestApp.entitlements */,
 				D45C7A0329C0CA0C004E40E6 /* Assets.xcassets */,
 			);
@@ -78,6 +80,23 @@
 				D45C7A1829C0D236004E40E6 /* ProximityReader.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4CF639829C0F3A80017DFF3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D45C7A0129C0CA0B004E40E6 /* ContentView.swift */,
+				D4CF639629C0F3490017DFF3 /* TTPProgressView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4CF639929C0F3C70017DFF3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				D45C7A1329C0CC3B004E40E6 /* FiservTTPViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CF639729C0F3490017DFF3 /* TTPProgressView.swift in Sources */,
 				D45C7A1429C0CC3B004E40E6 /* FiservTTPViewModel.swift in Sources */,
 				D45C7A0229C0CA0B004E40E6 /* ContentView.swift in Sources */,
 				D45C7A0029C0CA0B004E40E6 /* FiservTTPTestApp.swift in Sources */,

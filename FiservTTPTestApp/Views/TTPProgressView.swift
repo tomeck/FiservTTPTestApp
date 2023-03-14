@@ -1,4 +1,4 @@
-//  FiservTTPTestApp
+//  TTPProgressView
 //
 //  Copyright (c) 2022 - 2023 Fiserv, Inc.
 //
@@ -22,11 +22,38 @@
 
 import SwiftUI
 
-@main
-struct FiservTTPTestApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+struct TTPProgressView: View {
+    
+    @State var degress = 0.0
+    
+    var body: some View {
+        HStack() {
+            Circle()
+                .trim(from: 0.0, to: 0.6)
+                .stroke(.blue, lineWidth: 5.0)
+                .frame(width: 120, height: 120)
+                .rotationEffect(Angle(degrees: degress))
+                .onAppear(perform: {self.start()})
+            
+            Spacer()
+            
+            Text("Working...")
+            
+            Spacer()
         }
+    }
+    
+    func start() {
+        _ = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) { timer in
+            withAnimation {
+                self.degress += 10.0
+            }
+        }
+    }
+}
+
+struct TTPProgressView_Previews: PreviewProvider {
+    static var previews: some View {
+        TTPProgressView()
     }
 }
