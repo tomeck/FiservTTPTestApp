@@ -105,6 +105,8 @@ class FiservTTPViewModel: ObservableObject {
             let response = try await self.fiservTTPCardReader.readCard(amount: amount,
                                                                        merchantOrderId: merchantOrderId,
                                                                        merchantTransactionId: merchantTransactionId)
+            
+            
             await MainActor.run { self.isBusy = false }
             return response
         } catch {

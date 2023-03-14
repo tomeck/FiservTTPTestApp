@@ -38,9 +38,6 @@ extension Encodable {
 struct ContentView: View {
 
     @State private var amount: String = "5.00"
-    
-//    @State var showSpinner = false
-    @State var linkButtonTitle: String = "Link Apple Account"
 
     // CHARGE RESPONSE
     @State private var responseWrapper: FiservTTPResponseWrapper?
@@ -117,7 +114,7 @@ struct ContentView: View {
                         
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(viewModel.accountLinked ? Color.green : Color.gray)
-                        Button(linkButtonTitle, action: {
+                        Button("Link Apple Account", action: {
                         
                             
                             print("Linking account...")
