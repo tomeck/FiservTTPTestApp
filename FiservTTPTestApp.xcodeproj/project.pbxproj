@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		367B211129C263F000200B96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D45C79FC29C0CA0B004E40E6 /* FiservTTPTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiservTTPTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiservTTPTestApp.swift; sourceTree = "<group>"; };
 		D45C7A0129C0CA0B004E40E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		D45C79FE29C0CA0B004E40E6 /* FiservTTPTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				367B211129C263F000200B96 /* Info.plist */,
 				D4CF639929C0F3C70017DFF3 /* View Models */,
 				D4CF639829C0F3A80017DFF3 /* Views */,
 				D45C79FF29C0CA0B004E40E6 /* FiservTTPTestApp.swift */,
@@ -308,9 +310,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FiservTTPTestApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fiserv TapToPay Test App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -351,9 +353,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FiservTTPTestApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fiserv TapToPay Test App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
