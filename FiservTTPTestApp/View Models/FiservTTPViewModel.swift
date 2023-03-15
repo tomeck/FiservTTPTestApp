@@ -44,7 +44,6 @@ class FiservTTPViewModel: ObservableObject {
         self.fiservTTPCardReader.sessionReadySubject
             .receive(on: DispatchQueue.main)
             .sink { sessionReady in
-                print("Card Reader Active: \(sessionReady)")
                 self.cardReaderActive = sessionReady
             }
             .store(in: &cancellables)
