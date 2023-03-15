@@ -189,10 +189,10 @@ struct ContentView: View {
                 }
             }
             .onChange(of: scenePhase) { phase in
-                if phase == .active && viewModel.hasToken && viewModel.cardReaderActive == false {
+                if phase == .active {
                     Task {
                         do {
-                            try await viewModel.initializeSession()
+                            try await viewModel.reinitializeSession()
                         } catch let error as FiservTTPCardReaderError {
                             errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Check the configuration settings and try again.")
                         }

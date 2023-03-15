@@ -31,6 +31,9 @@ class FiservTTPViewModel: ObservableObject {
     @Published var accountLinked: Bool = false
     @Published var cardReaderActive: Bool = false
     
+    // Used to re-initialize session if lost, requires that we have already established a session at least once
+    private var readyForPayments: Bool = false
+    
     private let fiservTTPCardReader: FiservTTPCardReader
     
     private lazy var cancellables: Set<AnyCancellable> = .init()
@@ -41,6 +44,7 @@ class FiservTTPViewModel: ObservableObject {
         self.fiservTTPCardReader.sessionReadySubject
             .receive(on: DispatchQueue.main)
             .sink { sessionReady in
+                print("Card Reader Active: \(sessionReady)")
                 self.cardReaderActive = sessionReady
             }
             .store(in: &cancellables)
@@ -81,6 +85,15 @@ class FiservTTPViewModel: ObservableObject {
         }
     }
     
+    // REINITIALIZE SESSION
+    public func reinitializeSession() async throws {
+        
+        if self.readyForPayments && !self.cardReaderActive {
+            
+            try await self.initializeSession()
+        }
+    }
+    
     // INITIALIZE SESSION
     public func initializeSession() async throws {
         do {
@@ -89,6 +102,7 @@ class FiservTTPViewModel: ObservableObject {
             await MainActor.run {
                 self.isBusy = false
                 self.cardReaderActive = true
+                self.readyForPayments = true
             }
         } catch {
             await MainActor.run { self.isBusy = false }
