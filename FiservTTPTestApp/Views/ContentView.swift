@@ -24,6 +24,7 @@ import SwiftUI
 import ProximityReader
 import FiservTTP
 
+// For pretty-printing JSON
 extension Encodable {
     var prettyJSON: String {
         let encoder = JSONEncoder()
@@ -35,20 +36,23 @@ extension Encodable {
     }
 }
 
+// Main view for our app
 struct ContentView: View {
 
+    // Default value for charging a card
     @State private var amount: String = "5.00"
 
-    // CHARGE RESPONSE
-    @State private var responseWrapper: FiservTTPResponseWrapper?
+    // For ease in displaying the result of a readCard request
+    @State private var chargeReponseWrapper: FiservTTPResponseWrapper?
     
-    // USED FOR ALL ERRORS
+    // Error handling and displaying
     @State private var errorWrapper: FiservTTPErrorWrapper?
     @Environment(\.dismiss) private var dismiss
     
-    // VIEW MODEL
+    // Sample view model - feel free to change this as necessary
     @StateObject var viewModel = FiservTTPViewModel()
     
+    // For detecting app returning from background (need to re-init reader session in this case)
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
@@ -88,19 +92,16 @@ struct ContentView: View {
                     TTPProgressView()
                 }
                 
+                // You must always obtain a session token before any other operation
                 Section("1. Obtain session token") {
                     HStack() {
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(viewModel.hasToken ? Color.green : Color.gray)
                         Button("Create Session Token", action: {
             
-                            
-                            print("Getting session token...")
                             Task {
                                 do {
                                     try await viewModel.requestSessionToken()
-                                    
-                                    print("Obtained Session Token")
                                 } catch let error as FiservTTPCardReaderError {
                                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Check the configuration settings and try again.")
                                 }
@@ -111,19 +112,13 @@ struct ContentView: View {
 
                 Section("2. (Optional) Link Apple Account to MID") {
                     HStack() {
-                        
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(viewModel.accountLinked ? Color.green : Color.gray)
                         Button("Link Apple Account", action: {
                         
-                            
-                            print("Linking account...")
-                            
                             Task {
                                 do {
                                     try await viewModel.linkAccount()
-
-                                    print("Account Linked")
                                 } catch let error as FiservTTPCardReaderError {
                                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
                                 }
@@ -138,12 +133,9 @@ struct ContentView: View {
                             .foregroundColor(viewModel.cardReaderActive ? Color.green : Color.gray)
                         Button("Start TTP Session", action: {
                             
-                            print("Initializing TTP session...")
-                            
                             Task {
                                 do {
                                     try await viewModel.initializeSession()
-                                    print("Reader Activated")
                                 } catch let error as FiservTTPCardReaderError {
                                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
                                 }
@@ -158,13 +150,9 @@ struct ContentView: View {
                             .foregroundColor(viewModel.cardValid ? Color.green : Color.gray)
                         Button("Validate Card", action: {
                             
-                            print("Validating Card...")
-                            
                             Task {
                                 do {
                                     let validateResponse = try await viewModel.validateCard()
-                                    print("Got validate response")
-                                    print(validateResponse)
                                 } catch let error as FiservTTPCardReaderError {
                                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
                                 }
@@ -179,16 +167,12 @@ struct ContentView: View {
                     
                     Button("Accept Payment",action: {
                         
-                        print("Accepting payment...")
-                        
                         Task {
                             if let decimalValue = Decimal(string:amount) {
                                 
                                 do {
                                     let chargeResponse = try await viewModel.readCard(amount: decimalValue, merchantOrderId: "oid123", merchantTransactionId: "tid987")
-                                    responseWrapper = FiservTTPResponseWrapper(response: chargeResponse)
-                                    print("Got charge response")
-                                    print(chargeResponse)
+                                    chargeReponseWrapper = FiservTTPResponseWrapper(response: chargeResponse)
                                 } catch let error as FiservTTPCardReaderError {
                                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
                                 }
@@ -200,6 +184,7 @@ struct ContentView: View {
                     })
                 }
             }
+            // You need to check whether the device supports Apple TapToPay
             .onAppear {
                 if !self.viewModel.readerIsSupported() {
                     
@@ -209,6 +194,7 @@ struct ContentView: View {
                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "You will need to use a newer device.")
                 }
             }
+            // You need to reinitialize the card reader session when returning from the background
             .onChange(of: scenePhase) { phase in
                 if phase == .active {
                     Task {
@@ -220,7 +206,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .sheet(item: $responseWrapper) { wrapper in
+            .sheet(item: $chargeReponseWrapper) { wrapper in
                 
                 FiservTTPChargeResponseView(responseWrapper: wrapper)
             }
@@ -316,6 +302,7 @@ struct FiservTTPErrorView: View {
         }
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
