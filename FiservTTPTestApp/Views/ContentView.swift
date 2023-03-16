@@ -152,7 +152,28 @@ struct ContentView: View {
                     }
                 }
                 
-                Section("4. Accept a TTP Payment") {
+                Section("4. (Optional) Validate Card") {
+                    HStack() {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(viewModel.cardValid ? Color.green : Color.gray)
+                        Button("Validate Card", action: {
+                            
+                            print("Validating Card...")
+                            
+                            Task {
+                                do {
+                                    let validateResponse = try await viewModel.validateCard()
+                                    print("Got validate response")
+                                    print(validateResponse)
+                                } catch let error as FiservTTPCardReaderError {
+                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
+                                }
+                            }
+                        })
+                    }
+                }
+                
+                Section("5. Accept a TTP Payment") {
                     TextField("Amount:", text: $amount)
                         .keyboardType(.decimalPad)
                     

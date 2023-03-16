@@ -29,6 +29,7 @@ class FiservTTPViewModel: ObservableObject {
     @Published var isBusy: Bool = false
     @Published var hasToken: Bool = false
     @Published var accountLinked: Bool = false
+    @Published var cardValid: Bool = false
     @Published var cardReaderActive: Bool = false
     
     // Used to re-initialize session if lost, requires that we have already established a session at least once
@@ -103,6 +104,26 @@ class FiservTTPViewModel: ObservableObject {
                 self.cardReaderActive = true
                 self.readyForPayments = true
             }
+        } catch {
+            await MainActor.run { self.isBusy = false }
+            throw error
+        }
+    }
+    
+    // VALIDATE CARD
+    public func validateCard() async throws -> FiservTTPValidateCardResponse {
+        do {
+            await MainActor.run { self.isBusy = true }
+            let response = try await self.fiservTTPCardReader.validateCard()
+            
+            await MainActor.run {
+                self.isBusy = false
+                if let _ = response.generalCardData, let _ = response.paymentCardData {
+                    self.cardValid = true
+                }
+            }
+            return response
+            
         } catch {
             await MainActor.run { self.isBusy = false }
             throw error
