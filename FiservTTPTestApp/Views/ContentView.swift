@@ -35,6 +35,13 @@ extension Encodable {
         return output
     }
 }
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
 
 // Main view for our app
 struct ContentView: View {
@@ -59,137 +66,145 @@ struct ContentView: View {
         
         NavigationView {
             
-            Form {
-                VStack(alignment:.leading) {
-                    Spacer()
-                    
-                    HStack {
-                        
-                        Image("Fiserv_logo.svg")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 30)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                
+                Form {
+                    VStack(alignment:.leading) {
                         Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
-                    
-                    Spacer()
-                    
-                    Text("Apple TTP Test Tool")
-                        .font(Font.title.weight(.bold))
-                    
-                }
-                
-                Section("Merchant Info") {
-                    
-                    Text(FiservTTPViewModel.configuration().merchantId)
-                    
-                    Text(FiservTTPViewModel.configuration().merchantName)
-                }
-                
-                if( viewModel.isBusy == true ) {
-                    TTPProgressView()
-                }
-                
-                // You must always obtain a session token before any other operation
-                Section("1. Obtain session token") {
-                    HStack() {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(viewModel.hasToken ? Color.green : Color.gray)
-                        Button("Create Session Token", action: {
-            
-                            Task {
-                                do {
-                                    try await viewModel.requestSessionToken()
-                                } catch let error as FiservTTPCardReaderError {
-                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Check the configuration settings and try again.")
-                                }
-                            }
-                        })
-                    }
-                }
-
-                Section("2. (Optional) Link Apple Account to MID") {
-                    HStack() {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(viewModel.accountLinked ? Color.green : Color.gray)
-                        Button("Link Apple Account", action: {
                         
-                            Task {
-                                do {
-                                    try await viewModel.linkAccount()
-                                } catch let error as FiservTTPCardReaderError {
-                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
-                                }
-                            }
-                        })
-                    }
-                }
-                
-                Section("3. Start Accepting TTP Payments") {
-                    HStack() {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(viewModel.cardReaderActive ? Color.green : Color.gray)
-                        Button("Start TTP Session", action: {
+                        HStack {
                             
-                            Task {
-                                do {
-                                    try await viewModel.initializeSession()
-                                } catch let error as FiservTTPCardReaderError {
-                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
-                                }
-                            }
-                        })
-                    }
-                }
-                
-                Section("4. (Optional) Validate Card") {
-                    HStack() {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(viewModel.cardValid ? Color.green : Color.gray)
-                        Button("Validate Card", action: {
-                            
-                            Task {
-                                do {
-                                    let validateResponse = try await viewModel.validateCard()
-                                } catch let error as FiservTTPCardReaderError {
-                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
-                                }
-                            }
-                        })
-                    }
-                }
-                
-                Section("5. Accept a TTP Payment") {
-                    TextField("Amount:", text: $amount)
-                        .keyboardType(.decimalPad)
-                    
-                    Button("Accept Payment",action: {
-                        
-                        Task {
-                            if let decimalValue = Decimal(string:amount) {
-                                
-                                do {
-                                    let chargeResponse = try await viewModel.readCard(amount: decimalValue, merchantOrderId: "oid123", merchantTransactionId: "tid987")
-                                    chargeReponseWrapper = FiservTTPResponseWrapper(response: chargeResponse)
-                                } catch let error as FiservTTPCardReaderError {
-                                    errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
-                                }
-                            } else {
-                                print("String does not contain Decimal value")
-                                return
-                            }
+                            Image("Fiserv_logo.svg")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 30)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Spacer()
                         }
-                    })
+                        .frame(maxWidth: .infinity)
+                        
+                        Spacer()
+                        
+                        Text("Apple TTP Test Tool")
+                            .font(Font.title.weight(.bold))
+                        
+                    }
+                    
+                    Section("Merchant Info") {
+                        
+                        Text(FiservTTPViewModel.configuration().merchantId)
+                        
+                        Text(FiservTTPViewModel.configuration().merchantName)
+                    }
+                    
+                    if( viewModel.isBusy == true ) {
+                        TTPProgressView()
+                    }
+                    
+                    // You must always obtain a session token before any other operation
+                    Section("1. Obtain session token") {
+                        HStack() {
+                            Image(systemName: "checkmark.circle")
+                                .foregroundColor(viewModel.hasToken ? Color.green : Color.gray)
+                            Button("Create Session Token", action: {
+                                
+                                Task {
+                                    do {
+                                        try await viewModel.requestSessionToken()
+                                    } catch let error as FiservTTPCardReaderError {
+                                        errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Check the configuration settings and try again.")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    
+                    Section("2. (Optional) Link Apple Account to MID") {
+                        HStack() {
+                            Image(systemName: "checkmark.circle")
+                                .foregroundColor(viewModel.accountLinked ? Color.green : Color.gray)
+                            Button("Link Apple Account", action: {
+                                
+                                Task {
+                                    do {
+                                        try await viewModel.linkAccount()
+                                    } catch let error as FiservTTPCardReaderError {
+                                        errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    
+                    Section("3. Start Accepting TTP Payments") {
+                        HStack() {
+                            Image(systemName: "checkmark.circle")
+                                .foregroundColor(viewModel.cardReaderActive ? Color.green : Color.gray)
+                            Button("Start TTP Session", action: {
+                                
+                                Task {
+                                    do {
+                                        try await viewModel.initializeSession()
+                                    } catch let error as FiservTTPCardReaderError {
+                                        errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you obtain a session token?")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    
+                    Section("4. (Optional) Validate Card") {
+                        HStack() {
+                            Image(systemName: "checkmark.circle")
+                                .foregroundColor(viewModel.cardValid ? Color.green : Color.gray)
+                            Button("Validate Card", action: {
+                                
+                                Task {
+                                    do {
+                                        let _ = try await viewModel.validateCard()
+                                    } catch let error as FiservTTPCardReaderError {
+                                        errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    
+                    Section("5. Accept a TTP Payment") {
+                        TextField("Amount:", text: $amount)
+                            .keyboardType(.decimalPad)
+                        
+                        Button("Accept Payment",action: {
+                            
+                            hideKeyboard()
+                            
+                            Task {
+                                if let decimalValue = Decimal(string:amount) {
+                                    
+                                    do {
+                                        let chargeResponse = try await viewModel.readCard(amount: decimalValue, merchantOrderId: "oid123", merchantTransactionId: "tid987")
+                                        chargeReponseWrapper = FiservTTPResponseWrapper(response: chargeResponse)
+                                    } catch let error as FiservTTPCardReaderError {
+                                        errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "Did you initialize the reader?")
+                                    }
+                                } else {
+                                    print("String does not contain Decimal value")
+                                    return
+                                }
+                            }
+                        })
+                    }
                 }
+            }
+            .onTapGesture {
+                hideKeyboard()
             }
             // You need to check whether the device supports Apple TapToPay
             .onAppear {
                 if !self.viewModel.readerIsSupported() {
                     
                     let error = FiservTTPCardReaderError(title: "Reader not supported.",
-                                                         localizedDescription: NSLocalizedString("This device does not support Apple Tap to Pay.", comment: ""))
+                                                        localizedDescription: NSLocalizedString("This device does not support Apple Tap to Pay.", comment: ""))
                     
                     errorWrapper = FiservTTPErrorWrapper(error: error, guidance: "You will need to use a newer device.")
                 }
@@ -207,7 +222,7 @@ struct ContentView: View {
                 }
             }
             .sheet(item: $chargeReponseWrapper) { wrapper in
-                
+            
                 FiservTTPChargeResponseView(responseWrapper: wrapper)
             }
             .sheet(item: $errorWrapper) { wrapper in
@@ -284,6 +299,8 @@ struct FiservTTPErrorView: View {
                         .font(.headline)
                     Text(error_wrapper.guidance)
                         .font(.caption)
+                    Text(error_wrapper.error.failureReason ?? "")
+                        .font(.headline)
                         .padding(.top)
                     Spacer()
                 }
