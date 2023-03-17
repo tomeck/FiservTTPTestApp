@@ -24,6 +24,22 @@ import Foundation
 import Combine
 import FiservTTP
 
+// Merchant-specific settings; change these as necessary for your merchant account
+let _merchantId = "190009000000700"
+let _terminalId = "10000001"
+let _merchantName = "Tom's Tacos"
+let _merchantCategoryCode = "1000"
+
+// API Key and Secret -- keep these somewhere safe, e.g. KeyChain
+let _secretKey = "RH2aSkDW8J3OeKtmsTXNnXnGQqVRQ2NnEBv9pts9Gm6"
+let _apiKey = "0JvVe4QCtT3srMmflNuUrs1zxZLswmmi"
+let _environment = FiservTTPEnvironment.Sandbox // you will eventually change this to .Production
+
+// Constants - do not change these
+let _terminalProfileId = "3c00e000-a00e-2043-6d63-936859000002"
+let _currencyCode = "USD" // only USD is currently supported
+
+
 class FiservTTPViewModel: ObservableObject {
     
     @Published var isBusy: Bool = false
@@ -155,14 +171,14 @@ extension FiservTTPViewModel {
 
     static func configuration() -> FiservTTPConfig {
         
-        return FiservTTPConfig.init(secretKey: "RH2aSkDW8J3OeKtmsTXNnXnGQqVRQ2NnEBv9pts9Gm6",
-                                    apiKey: "0JvVe4QCtT3srMmflNuUrs1zxZLswmmi",
-                                    environment: .Sandbox,
-                                    currencyCode: "USD",
-                                    merchantId: "190009000000700",
-                                    merchantName: "Tom's Tacos",
-                                    merchantCategoryCode: "1000",
-                                    terminalId: "10000001",
-                                    terminalProfileId: "3c00e000-a00e-2043-6d63-936859000002")
+        return FiservTTPConfig.init(secretKey: _secretKey,
+                                    apiKey: _apiKey,
+                                    environment: _environment,
+                                    currencyCode: _currencyCode,
+                                    merchantId: _merchantId,
+                                    merchantName: _merchantName,
+                                    merchantCategoryCode: _merchantCategoryCode,
+                                    terminalId: _terminalId,
+                                    terminalProfileId: _terminalProfileId)
     }
 }
